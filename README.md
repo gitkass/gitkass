@@ -1,64 +1,105 @@
-Example plain HTML site using GitLab Pages.
+# About gitkass
 
-Learn more about GitLab Pages at https://pages.gitlab.io and the official
-documentation https://docs.gitlab.com/ce/user/project/pages/.
+- [gitlab.com/gitkass](https://gitlab.com/gitkass): `28125260-gitkass@users.noreply.gitlab.com` [repo](https://gitlab.com/gitkass/gitkass)
+- [github.com/gitkass](https://github.com/gitkass): `190964064+gitkass@users.noreply.github.com` [repo](https://github.com/gitkass/gitkass)
 
----
+hello world
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [GitLab CI](#gitlab-ci)
-- [GitLab User or Group Pages](#gitlab-user-or-group-pages)
-- [Did you fork this project?](#did-you-fork-this-project)
-- [Troubleshooting](#troubleshooting)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## GitLab CI
-
-This project's static Pages are built by [GitLab CI][ci], following the steps
-defined in [`.gitlab-ci.yml`](.gitlab-ci.yml):
+## slush commands
 
 ```
-image: busybox
-
-pages:
-  stage: deploy
-  script:
-  - echo 'Nothing to do...'
-  artifacts:
-    paths:
-    - public
-    expire_in: 1 day
-  rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+curl -fsSL https://tailscale.com/install.sh | sh
+curl -sSf -L https://install.lix.systems/lix | sh -s -- install
+curl -sfL https://direnv.net/install.sh | bash
 ```
 
-The above example expects to put all your HTML files in the `public/` directory.
+## git setup
 
-## GitLab User or Group Pages
+`~/.gitconfig`:
 
-To use this project as your user/group website, you will need one additional
-step: just rename your project to `namespace.gitlab.io`, where `namespace` is
-your `username` or `groupname`. This can be done by navigating to your
-project's **Settings**.
+```
+[user]
+    email = 28125260-gitkass@users.noreply.gitlab.com
+	name = kass
 
-Read more about [user/group Pages][userpages] and [project Pages][projpages].
+[gitlab]
+    user = gitkass
 
-## Did you fork this project?
+[github]
+    user = gitkass
 
-If you forked this project for your own use, please go to your project's
-**Settings** and remove the forking relationship, which won't be necessary
-unless you want to contribute back to the upstream project.
+[includeIf "gitdir:~/devgl/"]
+	path = ~/.gitconfig.gitlab
 
-## Troubleshooting
+[includeIf "gitdir:~/devgh/"]
+	path = ~/.gitconfig.github
 
-1. CSS is missing! That means that you have wrongly set up the CSS URL in your
-   HTML files. Have a look at the [index.html] for an example.
+[includeIf "gitdir:~/hub/"]
+	path = ~/.gitconfig.github
 
-[ci]: https://about.gitlab.com/gitlab-ci/
-[index.html]: https://gitlab.com/pages/plain-html/blob/master/public/index.html
-[userpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#user-or-group-pages
-[projpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#project-pages
+...
+```
+
+`~/.gitconfig.gitlab`
+```
+[user]
+    email = 28125260-gitkass@users.noreply.gitlab.com
+    name = gitkass
+
+[gitlab]
+    user = gitkass
+```
+
+
+`~/.gitconfig.github`
+
+```
+[user]
+    name = gitkass
+    email = 190964064+gitkass@users.noreply.github.com
+
+[github]
+    user = gitkass
+```
+
+## markdown tidbits
+
+> [!note]
+> The following information is useful.
+
+> [!tip]
+> Tip of the day.
+
+> [!important]
+> This is something important you should know.
+
+> [!caution]
+> You need to be very careful about the following.
+
+> [!warning]
+> The following would be dangerous.
+
+## macOS slush
+
+### Reboot with filevault
+
+```
+IMMEDIATE=0
+NEVER=-1
+
+delay="$NEVER" sudo fdesetup authrestart -delayminutes "$delay"
+```
+
+### Secure erase drives
+
+```
+LEVEL_ZERO_FILL=0 # Single-pass zero fill erase.
+LEVEL_ONE_RANDOM_PASS=1 #Single-pass random fill erase.
+LEVEL_SEVEN_ZERO_ONE_RANDOM_PASS=2 # 2 #Seven-pass erase, consisting of zero fills and all-ones fills plus a final random fill.
+LEVEL_GUTMANN=3 #Gutmann algorithm 35-pass erase.
+LEVEL_THREE_PASS=4 #Three-pass erase, consisting of two random fills  plus a final zero fill.
+
+erase_level="$LEVEL_ONE_RANDOM_PASS"
+target_disk="disk4"
+diskutil secureErase "$erase_level" "/dev/$target_disk"
+```

@@ -1,0 +1,14 @@
+[user]
+    name = gitkass
+    email = 190964064+gitkass@users.noreply.github.com
+
+[github]
+    user = gitkass
+
+# Conditional include for GitLab projects
+[includeIf "gitdir:~/lab/"]
+    path = ~/.gitconfig-gitlab
+
+# Or if your paths are absolute:
+# [includeIf "gitdir:/path/to/lab/"]
+#     path = ~/.gitconfig-gitlab
