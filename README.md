@@ -1,9 +1,32 @@
+```
+ _____________________________________
+/ Welcome to gitkass!                 \
+| Git configs, shell scripts, and    |
+\ markdown magic await you here! 🚀  /
+ -------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
 # About gitkass
 
 - [gitlab.com/gitkass](https://gitlab.com/gitkass): `28125260-gitkass@users.noreply.gitlab.com` [repo](https://gitlab.com/gitkass/gitkass)
 - [github.com/gitkass](https://github.com/gitkass): `190964064+gitkass@users.noreply.github.com` [repo](https://github.com/gitkass/gitkass)
 
-hello world
+```
+ ________________________________________
+/ "hello world" - Every programmer's    \
+\ first words                           /
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
 
 ## slush commands
 
