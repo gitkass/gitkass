@@ -104,6 +104,14 @@ target_disk="disk4"
 diskutil secureErase "$erase_level" "/dev/$target_disk"
 ```
 
+### ssh arguments
+
+- `-o PreferredAuthentications=password -o PubkeyAuthentication=no`: Use password-based auth for this connection.
+
+### ssh config
+
+- `StrictHostKeyChecking accept-new`: Trust new hosts, but warn if an existing host changes.
+
 ### Generate ssh key in secure enclave
 
 - [source](https://gist.github.com/arianvp/5f59f1783e3eaf1a2d4cd8e952bb4acf)
