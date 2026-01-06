@@ -1,5 +1,7 @@
 # About gitkass
 
+<!-- git@gitlab.com:gitkass/gitkass.git -->
+
 - [gitlab.com/gitkass](https://gitlab.com/gitkass): `28125260-gitkass@users.noreply.gitlab.com` [repo](https://gitlab.com/gitkass/gitkass)
 - [github.com/gitkass](https://github.com/gitkass): `190964064+gitkass@users.noreply.github.com` [repo](https://github.com/gitkass/gitkass)
 
