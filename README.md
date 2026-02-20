@@ -43,6 +43,7 @@ curl -sfL https://direnv.net/install.sh | bash
 ```
 
 `~/.gitconfig.gitlab`
+
 ```
 [user]
     email = 28125260-gitkass@users.noreply.gitlab.com
@@ -51,7 +52,6 @@ curl -sfL https://direnv.net/install.sh | bash
 [gitlab]
     user = gitkass
 ```
-
 
 `~/.gitconfig.github`
 
@@ -122,7 +122,7 @@ diskutil secureErase "$erase_level" "/dev/$target_disk"
 
 ```
 your_key_type="p-256-ne" # The `-ne` suffix means non-exportable.
-touch="bio" # or `none` to not require a touchID prompt 
+touch="bio" # or `none` to not require a touchID prompt
 your_label="key11"
 your_email="190964064+gitkass@users.noreply.github.com"
 your_common_name="kass.zxcv.foo"
@@ -148,7 +148,6 @@ sc_auth create-ctk-identity \
 
 ### Stay awake
 
-
 ```
      -d      Create an assertion to prevent the display from sleeping.
      -i      Create an assertion to prevent the system from idle sleeping.
@@ -167,4 +166,3 @@ sc_auth create-ctk-identity \
 caffeinate -dimsu task #stay awake until `task` finishes
 caffeinate -dimsu -t 3600 #1 hour
 ```
-

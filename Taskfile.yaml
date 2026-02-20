@@ -1,0 +1,34 @@
+version: "3"
+
+tasks:
+  default:
+    desc: List all available tasks
+    cmds:
+      - task --list-all
+
+  setup:
+    desc: Run all setup tasks
+    cmds:
+      - prek install
+      - task: git:blame-ignore
+
+  fmt:
+    desc: Format code using treefmt
+    cmds:
+      - treefmt
+
+  fmt:check:
+    desc: Check formatting without making changes (CI mode)
+    cmds:
+      - treefmt --ci
+
+  prek:validate:
+    desc: Validate pre-commit configuration
+    cmds:
+      - prek validate-config
+
+  # Configures your repo use .git-blame-ignore-revs
+  git:blame-ignore:
+    desc: Configure git to ignore revisions in .git-blame-ignore-revs
+    cmds:
+      - git config blame.ignoreRevsFile .git-blame-ignore-revs
