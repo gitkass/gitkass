@@ -1,0 +1,14 @@
+[formatter.prettier]
+command = "prettier"
+options = ["--write"]
+includes = ["*.md", "*.yml", "*.yaml"]
+excludes = ["ansible/.galaxy/**"]
+
+[formatter.nixfmt]
+command = "nixfmt"
+includes = ["*.nix"]
+
+[formatter.shfmt]
+command = "shfmt"
+options = ["-i", "2", "-w"]
+includes = ["*.sh"]
