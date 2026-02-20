@@ -6,7 +6,13 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      ...
+    }:
     let
       # Import shell builder and mixins
       mixins = import ./nix/mixins.nix;
@@ -21,13 +27,18 @@
     }
 
     # ── Dev shells for this repo itself (for testing) ─────────────────
-    // flake-utils.lib.eachDefaultSystem (system:
+    // flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
         devShells.default = mkShell pkgs {
-          mixins = [ "tooling" "git" ];
+          mixins = [
+            "tooling"
+            "git"
+            "cloud"
+          ];
         };
       }
     );

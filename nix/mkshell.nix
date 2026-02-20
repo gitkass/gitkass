@@ -1,10 +1,11 @@
 # Composes language packs and mixins into a single pkgs.mkShell.
 
 pkgs:
-{ languages ? []
-, mixins ? []
-, extraPackages ? []
-, shellHook ? ""
+{
+  languages ? [ ],
+  mixins ? [ ],
+  extraPackages ? [ ],
+  shellHook ? "",
 }:
 
 let
@@ -12,22 +13,25 @@ let
   allLanguages = import ./languages.nix;
 
   # Resolve selected mixins
-  allModules = map (name:
-    if builtins.hasAttr name allMixins
-    then allMixins.${name} pkgs
-    else throw "Unknown mixin: ${name}. Available: ${builtins.concatStringsSep ", " (builtins.attrNames allMixins)}"
+  allModules = map (
+    name:
+    if builtins.hasAttr name allMixins then
+      allMixins.${name} pkgs
+    else
+      throw "Unknown mixin: ${name}. Available: ${builtins.concatStringsSep ", " (builtins.attrNames allMixins)}"
   ) mixins;
 
-
-  mergedPackages = builtins.concatLists (map (m: m.packages or []) allModules);
+  mergedPackages = builtins.concatLists (map (m: m.packages or [ ]) allModules);
   mergedShellHook = builtins.concatStringsSep "\n" (
-    (builtins.filter (h: h != "") (map (m: m.shellHook or "") allModules))
-    ++ [ shellHook ]
+    (builtins.filter (h: h != "") (map (m: m.shellHook or "") allModules)) ++ [ shellHook ]
   );
-  mergedEnv = builtins.foldl' (acc: m: acc // (m.env or {})) {} allModules;
+  mergedEnv = builtins.foldl' (acc: m: acc // (m.env or { })) { } allModules;
 
 in
-pkgs.mkShell (mergedEnv // {
-  packages = mergedPackages ++ extraPackages;
-  shellHook = mergedShellHook;
-})
+pkgs.mkShell (
+  mergedEnv
+  // {
+    packages = mergedPackages ++ extraPackages;
+    shellHook = mergedShellHook;
+  }
+)

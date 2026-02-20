@@ -1,14 +1,18 @@
-# lib/mixins.nix
+# nix/mixins.nix
 #
 # Each mixin is a function: pkgs -> { packages, shellHook, env }
 # Consuming code selects mixins by name and mkShell merges them.
 
 {
-  # ── Tooling: direnv, Taskfile, 1Password CLI ───────────────────────
   tooling = pkgs: {
     packages = with pkgs; [
       direnv
+      nix-direnv
       go-task
+      treefmt
+      shfmt
+      nixfmt-rfc-style
+      nodePackages.prettier
     ];
 
     shellHook = ''
@@ -20,26 +24,24 @@
     env = { };
   };
 
-  # ── Git: common git tooling ────────────────────────────────────────
   git = pkgs: {
     packages = with pkgs; [
       git
       git-lfs
+      glab
       gh
-      pre-commit
+      prek
+      lazygit
     ];
 
     shellHook = "";
     env = { };
   };
 
-  # ── Nix tools: formatting, linting, maintenance ───────────────────
-  nix-tools = pkgs: {
+  cloud = pkgs: {
     packages = with pkgs; [
-      nixpkgs-fmt
-      nil
-      nix-direnv
-      nix-tree
+      awscli2
+      #oci-cli
     ];
 
     shellHook = "";
